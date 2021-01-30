@@ -1,0 +1,113 @@
+/*
+ *  CMSIS Pack Debug Access Sequence Log
+ *  File        : F:\Applications\Altium\Projects\ARMtrainningWeek1\project\MDK-ARM\PROJ_Sequences_0000.log
+ *  Created     : 15:55:32 (24/08/2020)
+ *  Device      : STM32F407VGTx
+ *  PDSC File   : F:\Applications\Keil uVision 5\Packs\Keil\STM32F4xx_DFP\2.14.0\Keil.STM32F4xx_DFP.pdsc
+ *  Config File : F:\Applications\Altium\Projects\ARMtrainningWeek1\project\MDK-ARM\DebugConfig\Target_1_STM32F407VGTx.dbgconf
+ *
+ */
+
+[15:55:32.563]  **********  Sequence "DebugDeviceUnlock"  (Context="Connect", Pname="", info="")
+[15:55:32.563]  
+[15:55:32.564]  <debugvars>
+[15:55:32.565]    // Pre-defined
+[15:55:32.565]    __protocol=0x00010002      (Protocol="SWD", SWJ-DP="True")
+[15:55:32.565]    __connection=0x00000202    (Connection Type="Flash", Reset Type="System Reset")
+[15:55:32.566]    __dp=0x00000000
+[15:55:32.566]    __ap=0x00000000
+[15:55:32.567]    __traceout=0x00000000      (Trace Disabled)
+[15:55:32.567]    __errorcontrol=0x00000000  (Skip Errors="False")
+[15:55:32.567]    __FlashAddr=0x00000000
+[15:55:32.568]    __FlashLen=0x00000000
+[15:55:32.568]    __FlashArg=0x00000000
+[15:55:32.568]    __FlashOp=0x00000000
+[15:55:32.569]    __Result=0x00000000
+[15:55:32.569]    
+[15:55:32.569]    // User-defined
+[15:55:32.569]    DbgMCU_CR=0x00000007
+[15:55:32.570]    DbgMCU_APB1_Fz=0x00000000
+[15:55:32.570]    DbgMCU_APB2_Fz=0x00000000
+[15:55:32.570]    TraceClk_Pin=0x00040002
+[15:55:32.570]    TraceD0_Pin=0x00040003
+[15:55:32.571]    TraceD1_Pin=0x00040004
+[15:55:32.571]    TraceD2_Pin=0x00040005
+[15:55:32.571]    TraceD3_Pin=0x00040006
+[15:55:32.572]  </debugvars>
+[15:55:32.572]  
+[15:55:32.572]  <sequence name="DebugDeviceUnlock" Pname="" disable="false" info="">
+[15:55:32.572]    <block atomic="false" info="">
+[15:55:32.573]      Sequence("CheckID");
+[15:55:32.573]        <sequence name="CheckID" Pname="" disable="false" info="">
+[15:55:32.573]          <block atomic="false" info="">
+[15:55:32.574]            __var pidr1 = 0;
+[15:55:32.574]              // -> [pidr1 <= 0x00000000]
+[15:55:32.574]            __var pidr2 = 0;
+[15:55:32.574]              // -> [pidr2 <= 0x00000000]
+[15:55:32.575]            __var jep106id = 0;
+[15:55:32.575]              // -> [jep106id <= 0x00000000]
+[15:55:32.575]            __var ROMTableBase = 0;
+[15:55:32.576]              // -> [ROMTableBase <= 0x00000000]
+[15:55:32.576]            __ap = 0;      // AHB-AP
+[15:55:32.576]              // -> [__ap <= 0x00000000]
+[15:55:32.577]            ROMTableBase = ReadAP(0xF8) & ~0x3;
+[15:55:32.577]              // -> [ReadAP(0x000000F8) => 0xE00FF003]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.578]              // -> [ROMTableBase <= 0xE00FF000]
+[15:55:32.578]            pidr1 = Read32(ROMTableBase + 0x0FE4);
+[15:55:32.579]              // -> [Read32(0xE00FFFE4) => 0x00000004]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.580]              // -> [pidr1 <= 0x00000004]
+[15:55:32.580]            pidr2 = Read32(ROMTableBase + 0x0FE8);
+[15:55:32.581]              // -> [Read32(0xE00FFFE8) => 0x0000000A]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.581]              // -> [pidr2 <= 0x0000000A]
+[15:55:32.581]            jep106id = ((pidr2 & 0x7) << 4 ) | ((pidr1 >> 4) & 0xF);
+[15:55:32.582]              // -> [jep106id <= 0x00000020]
+[15:55:32.582]          </block>
+[15:55:32.582]          <control if="jep106id != 0x20" while="" timeout="0" info="">
+[15:55:32.582]            // if-block "jep106id != 0x20"
+[15:55:32.583]              // =>  FALSE
+[15:55:32.583]            // skip if-block "jep106id != 0x20"
+[15:55:32.583]          </control>
+[15:55:32.583]        </sequence>
+[15:55:32.584]    </block>
+[15:55:32.584]  </sequence>
+[15:55:32.584]  
+[15:55:32.603]  **********  Sequence "DebugCoreStart"  (Context="Connect", Pname="", info="")
+[15:55:32.603]  
+[15:55:32.603]  <debugvars>
+[15:55:32.604]    // Pre-defined
+[15:55:32.604]    __protocol=0x00010002      (Protocol="SWD", SWJ-DP="True")
+[15:55:32.604]    __connection=0x00000202    (Connection Type="Flash", Reset Type="System Reset")
+[15:55:32.604]    __dp=0x00000000
+[15:55:32.605]    __ap=0x00000000
+[15:55:32.605]    __traceout=0x00000000      (Trace Disabled)
+[15:55:32.605]    __errorcontrol=0x00000000  (Skip Errors="False")
+[15:55:32.606]    __FlashAddr=0x00000000
+[15:55:32.606]    __FlashLen=0x00000000
+[15:55:32.606]    __FlashArg=0x00000000
+[15:55:32.607]    __FlashOp=0x00000000
+[15:55:32.607]    __Result=0x00000000
+[15:55:32.607]    
+[15:55:32.607]    // User-defined
+[15:55:32.607]    DbgMCU_CR=0x00000007
+[15:55:32.608]    DbgMCU_APB1_Fz=0x00000000
+[15:55:32.608]    DbgMCU_APB2_Fz=0x00000000
+[15:55:32.608]    TraceClk_Pin=0x00040002
+[15:55:32.609]    TraceD0_Pin=0x00040003
+[15:55:32.609]    TraceD1_Pin=0x00040004
+[15:55:32.609]    TraceD2_Pin=0x00040005
+[15:55:32.610]    TraceD3_Pin=0x00040006
+[15:55:32.610]  </debugvars>
+[15:55:32.610]  
+[15:55:32.610]  <sequence name="DebugCoreStart" Pname="" disable="false" info="">
+[15:55:32.611]    <block atomic="false" info="">
+[15:55:32.611]      Write32(0xE000EDF0, 0xA05F0001);                                        // Enable Core Debug via DHCSR
+[15:55:32.612]        // -> [Write32(0xE000EDF0, 0xA05F0001)]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.612]      Write32(0xE0042004, DbgMCU_CR);                                         // DBGMCU_CR: Configure MCU Debug
+[15:55:32.613]        // -> [Write32(0xE0042004, 0x00000007)]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.613]      Write32(0xE0042008, DbgMCU_APB1_Fz);                                    // DBGMCU_APB1_FZ: Configure APB1 Peripheral Freeze Behavior
+[15:55:32.614]        // -> [Write32(0xE0042008, 0x00000000)]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.614]      Write32(0xE004200C, DbgMCU_APB2_Fz);                                    // DBGMCU_APB1_FZ: Configure APB2 Peripheral Freeze Behavior
+[15:55:32.615]        // -> [Write32(0xE004200C, 0x00000000)]   (__dp=0x00000000, __ap=0x00000000)
+[15:55:32.615]    </block>
+[15:55:32.616]  </sequence>
+[15:55:32.616]  
